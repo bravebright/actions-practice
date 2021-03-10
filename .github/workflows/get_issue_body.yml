@@ -15,10 +15,10 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           result-encoding: json
           script: |
-            console.log(github.issues.get({
+            var issue = github.issues.get({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo
-            }))
-            return "hoge"
+            })
+            return issue.data
       - run: echo ${{steps.step01.outputs.result}}
