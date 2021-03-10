@@ -15,9 +15,9 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           result-encoding: json
           script: |
-            return github.issues.get({
+            console.log(github.issues.get({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo
-            }).data
+            }))
       - run: echo ${{steps.step01.outputs.result}}
