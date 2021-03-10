@@ -35,7 +35,7 @@ jobs:
         env:
           ISSUE_LABELS: ${{ toJson(steps.step01.outputs.result.data.labels) }}
         run: echo $ISSUE_LABELS
-      - id: step02
+      - id: step06
         env:
           ISSUE_BODY: ${{ toJson(steps.step01.outputs.result.data.body) }}
         run: echo $ISSUE_BODY
