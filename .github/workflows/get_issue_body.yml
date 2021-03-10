@@ -20,4 +20,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             }))
+            return "hoge"
       - run: echo ${{steps.step01.outputs.result}}
