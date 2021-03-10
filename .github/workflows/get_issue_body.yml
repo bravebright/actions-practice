@@ -1,0 +1,25 @@
+name: GetIssueBody
+on:
+  issues:
+    types:
+      - opened
+      - edited
+jobs:
+  test1:
+    runs-on: ubuntu-20.04
+    steps:
+      - id: step01
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          result-encoding: json
+          script: |
+            return github.issues.get({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            })
+      - id: step02
+        env:
+          ISSUE_BODY: ${{ toJson(steps.step01.outputs.result) }}
+        run: echo $ISSUE_BODY
