@@ -21,5 +21,21 @@ jobs:
             })
       - id: step02
         env:
-          ISSUE_BODY: ${{ toJson(steps.step01.outputs.result.body) }}
+          ISSUE_DATA: ${{ toJson(steps.step01.outputs.result.data) }}
+        run: echo $ISSUE_DATA
+      - id: step03
+        env:
+          ISSUE_TITLE: ${{ toJson(steps.step01.outputs.result.data.title) }}
+        run: echo $ISSUE_TITLE
+      - id: step04
+        env:
+          ISSUE_USER: ${{ toJson(steps.step01.outputs.result.data.user) }}
+        run: echo $ISSUE_USER
+      - id: step05
+        env:
+          ISSUE_LABELS: ${{ toJson(steps.step01.outputs.result.data.labels) }}
+        run: echo $ISSUE_LABELS
+      - id: step02
+        env:
+          ISSUE_BODY: ${{ toJson(steps.step01.outputs.result.data.body) }}
         run: echo $ISSUE_BODY
