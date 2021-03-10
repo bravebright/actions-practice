@@ -21,6 +21,8 @@ jobs:
             })
       - run: echo ${{steps.step01.outputs.result}}
       - run: echo ${{steps.step01.outputs.result.data}}
+      - run: echo ${{ fromJson(steps.step01.outputs.result) }}
+      - run: echo ${{ fromJson(steps.step01.outputs.result).data }}
       - id: step02
         env:
           ISSUE_DATA: ${{ toJson(steps.step01.outputs.result.data) }}
