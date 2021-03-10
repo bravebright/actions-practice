@@ -2,7 +2,7 @@
 
 name: IssueTest 
 on:
-  issue:
+  issues:
     types:
       - opened
 jobs:
