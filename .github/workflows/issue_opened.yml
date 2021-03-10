@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: IssueTest 
+on:
+  issue:
+    types:
+      - opened
+jobs:
+  test1:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Issueを作成しました！'
+            })
