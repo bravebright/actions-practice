@@ -19,6 +19,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
+      - run: echo ${{steps.step01.outputs.result}}
       - id: step02
         env:
           ISSUE_DATA: ${{ toJson(steps.step01.outputs.result.data) }}
