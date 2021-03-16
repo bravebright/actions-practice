@@ -37,5 +37,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-      - run: echo '${{steps.step01.outputs.result}}' | jq -r '.data.body' > $(echo '${{steps.step01.outputs.result}}' | jq -r '.data.title')
+      - run: echo '${{steps.step01.outputs.result}}' | jq -r '.data.body' > $(echo '${{steps.step01.outputs.result}}' | jq -r '.data.title').md
       - run: ls -lah
