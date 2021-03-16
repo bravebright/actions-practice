@@ -20,5 +20,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-      - run: echo ${{steps.step01.outputs.result}} | jq .
-      - run: echo ${{steps.step01.outputs.result}} | jq -r '.data.body'
+      - run: echo "${{steps.step01.outputs.result}}" | jq .
+      - run: echo "${{steps.step01.outputs.result}}" | jq -r '.data.body'
