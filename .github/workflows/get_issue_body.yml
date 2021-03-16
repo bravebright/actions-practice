@@ -20,8 +20,9 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-      - run: echo '${{steps.step01.outputs.result}}' | jq .
-      - run: echo '${{steps.step01.outputs.result}}' | jq -r '.data.body'
+      - run: echo '${{steps.step01.outputs.result}}' > outputs.json
+      - run : cat outputs.json | jq .
+      - run: cat outputs.json | jq -r '.data.body'
   test2:
     runs-on: ubuntu-20.04
     steps:
@@ -37,5 +38,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             })
-      - run: echo '${{steps.step01.outputs.result}}' | jq -r '.data.body' > $(echo '${{steps.step01.outputs.result}}' | jq -r '.data.title').md
+      - run: echo '${{steps.step01.outputs.result}}' > outputs.json
+      - run: cat outputs.json | jq -r '.data.body' > $(cat outputs.json | jq -r '.data.title').md
       - run: ls -lah
+      - run: cat $(cat outputs.json | jq -r '.data.title').md
