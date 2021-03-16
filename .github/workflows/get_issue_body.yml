@@ -22,3 +22,20 @@ jobs:
             })
       - run: echo '${{steps.step01.outputs.result}}' | jq .
       - run: echo '${{steps.step01.outputs.result}}' | jq -r '.data.body'
+  test2:
+    runs-on: ubuntu-20.04
+    steps:
+      - id: step01
+        uses: actions/github-script@v3
+        with:
+          debug: true
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          result-encoding: json
+          script: |
+            return github.issues.get({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            })
+      - run: echo '${{steps.step01.outputs.result}}' | jq -r '.data.body' > $(echo '${{steps.step01.outputs.result}}' | jq -r '.data.title')
+      - run: ls -lah
