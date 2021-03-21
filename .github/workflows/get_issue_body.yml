@@ -43,4 +43,8 @@ jobs:
           DATA_TITLE=$(cat outputs.json | jq -r '.data.title' | sed -e 's/ /_/g')
           cat outputs.json | jq -r '.data.body' > $DATA_TITLE.md
       - run: ls -lah
-      - run: cat $(cat outputs.json | jq -r '.data.title').md
+      - run: cat $(cat outputs.json | jq -r '.data.title' | sed -e 's/ /_/g').md
+
+
+
+
