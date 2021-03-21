@@ -39,6 +39,7 @@ jobs:
               repo: context.repo.repo
             })
       - run: echo '${{steps.step01.outputs.result}}' > outputs.json
+      - run: cat outputs.json | jq -r '.data.title'
       - run: DATA_TITLE=$(cat outputs.json | jq -r '.data.title')
       - run: cat outputs.json | jq -r '.data.body' > $DATA_TITLE.md
       - run: ls -lah
